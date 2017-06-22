@@ -1,0 +1,23 @@
+{
+  "name": "restserver",
+  "version": "1.0.0",
+  "description": "Rest Server for Watson test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daviddager/nodeRestServer.git"
+  },
+  "author": "David Dager",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Daviddager/nodeRestServer/issues"
+  },
+  "homepage": "https://github.com/Daviddager/nodeRestServer#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "ibm_db": "^2.0.0"
+  }
+}
