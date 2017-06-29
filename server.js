@@ -24,7 +24,7 @@ app.get( '/listUsers', function ( req, res ){
           console.log( "Error: ", err );
           return;
         }else{
-          if( rows === "[]" ){
+          if( !rows ){
             result = "NoData";
           }else{
             //console.log( rows );
@@ -47,24 +47,27 @@ app.get( '/:id', function ( req, res ){
       console.error( "Error: ", err );
       result = "NoConn";
     }else{
-      var query = "SELECT * FROM PLAN WHERE TELEFONO = ";
-      console.log( req.params.id );
-      query = query.concat( req.params.id );
-      conn.query( query, function( err, rows ){
+      // var query = "SELECT * FROM PLAN WHERE TELEFONO = ";
+      // console.log( req.params.id );
+      // query = query.concat( req.params.id );
+      // conn.query( query, function( err, rows ){
+      conn.prepare( "SELECT * FROM PLAN WHERE TELEFONO = ?", function( err, stmt ){
         if( err ){
           console.log( "Error: ", err );
           return;
-        }else{
-          if( rows === "[]" ){
-            result = "NoData";
+        }
+        stmt.execute( [ req.params.id ], function( err, result ){
+          if( !result ){
+            return "NoData";
           }else{
-            //console.log( rows );
+            rows = result.fetchAllSync();
             res.send( rows );
+            result.closeSync();
           }
           conn.close( function(){
             console.log( "Connection closed successfully." );
           } );
-        }
+        } );
       } );
     }
   } );
