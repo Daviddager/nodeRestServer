@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Daviddager/nodeRestServer#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "ibm_db": "^2.0.0"
   }
